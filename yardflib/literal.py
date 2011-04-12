@@ -172,7 +172,7 @@ class Integer(BaseLiteral):
 	
 	def __init__(self, value, options = {}):
 		if options.get('datatype'):
-			self.datatype = URI(options['datatype'])
+			self.datatype = model.URI(options['datatype'])
 		else:
 			self.datatype = self.DATATYPE
 			
@@ -189,7 +189,10 @@ class Integer(BaseLiteral):
 			self.object = int(value)
 			
 	def __cmp__(self, other):
-		return cmp(self.object, int(other))			
+		if isinstance(other, Integer) or isinstance(other, Decimal):
+			return cmp(self.object, other.object)
+		else: 
+			return False
 		
 
 class Time(BaseLiteral):

@@ -93,7 +93,7 @@ class URI(Resource):
 		if type(uri_or_options) == ParseResult:
 			self.uri = uri_or_options
 		else:
-			self.uri = urlparse(uri_or_options)
+			self.uri = urlparse(str(uri_or_options))
 		self._qname = ""
 			
 	def starts_with(string):
@@ -411,7 +411,7 @@ def Literal(value, options = {}):
 	
 	datatype = options.get('datatype')
 	if datatype:
-		datatype_uri = URI(datatype)
+		datetype_uri = URI(datatype)
 		if datetype_uri == vocab.XSD.get_prop('boolean'):
 			cls = literal.Boolean
 		elif datetype_uri == vocab.XSD.get_prop('integer'):
