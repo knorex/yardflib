@@ -1,0 +1,17 @@
+h1. YaRDFLib: Yet another RDFLib for python
+
+This is the Python version of "RDF.rb":http://rdf.rubyforge.org/ library which was originally written in Ruby.
+
+h2. Dependencies
+
+* "Python":http://www.python.org/ >= 2.5
+
+h2. Examples
+
+h2. Author
+
+* "Knorex Pte. Ltd.":http://www.knorex.com
+
+h2. License
+
+YaRDFLib is freely available for all uses under a BSD license.
