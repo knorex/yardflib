@@ -65,6 +65,9 @@ class Variable(model.Term):
 		else:
 			return "Variable(?%s=$s)" % (self.name, self.value)	
 
+	def evaluate(self, bindings = {}):
+		return bindings.get(self.name)
+
 class Solution(object):
 	
 	def __init__(self, bindings = {}):
@@ -436,3 +439,6 @@ class Query(object):
 	def __repr__(self):
 		return "Query(%s)%s" % (self.options.get('context') or 'None', repr(self.patterns))
 		return res
+		
+	def __eq__(self, other):
+		return isinstance(other, Query) and (self.patterns == other.patterns) and (self.context == other.context)

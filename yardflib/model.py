@@ -45,6 +45,9 @@ class Term(Value):
 	def __cmp__(self, other):
 		return cmp(str(self), str(other))
 	
+	def evaluate(self, bindings):
+		return self
+
 	@property
 	def is_constant(self):
 		return not self.is_variable
