@@ -345,6 +345,9 @@ class Pattern(model.Statement):
 		s += str(self.object) + " ."
 		s += "]"
 		return s
+	
+	def to_sse(self):
+		return ['triple', self.subject, self.predicate, self.object]
 
 class Query(object):
 
@@ -436,9 +439,16 @@ class Query(object):
 		for pattern in other.patterns:
 			self.patterns.append(pattern)
 
-	def __repr__(self):
-		return "Query(%s)%s" % (self.options.get('context') or 'None', repr(self.patterns))
-		return res
+#	def __repr__(self):
+#		return "Query(%s)%s" % (self.options.get('context') or 'None', repr(self.patterns))
 		
 	def __eq__(self, other):
 		return isinstance(other, Query) and (self.patterns == other.patterns) and (self.context == other.context)
+
+	def to_sse(self):
+		res = ['bgp'] + map(lambda p: p.to_sse(), self.patterns)		
+		return res
+#		if self.context:
+#			return ['graph', self.context, res]#
+#		else:
+#			return res

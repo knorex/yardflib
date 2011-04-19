@@ -33,10 +33,11 @@ class BaseLiteral(model.Term):
 	def is_typed(self):
 		return self.datatype != None
 
-class Numeric(BaseLiteral):
+	def to_sse(self):
+		return str(self) 
 
-	def __init__(self):
-		pass
+class Numeric(BaseLiteral):
+	pass
 
 class Boolean(BaseLiteral):
 	
@@ -133,7 +134,7 @@ class Decimal(Numeric):
 	def __init__(self, value, options = {}):
 		super(Decimal, self).__init__(value, options)	
 		if options.get('datatype'):
-			self.datatype = URI(options['datatype'])
+			self.datatype = model.URI(options['datatype'])
 		else:
 			self.datatype = self.DATATYPE
 
